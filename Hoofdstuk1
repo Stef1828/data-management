@@ -1,0 +1,57 @@
+CA (Contributor Agreement):
+- CLA (Contributor License Agreement): CLA kent een onherroepbare licentie toe aan de eigenaar van de software, zodat hij/zij de bijdrage kan gebruiken.
+    - Eigenaarschap (studenten en lectoren)
+    - Relatie (gezond)
+    - Juridisch (problemen vermijden)
+- CAA (Contributor Assignment Agreement): CAA kent het eigendom van de bijdrage toe aan de eigenaar van de software/project (Rechtoverdracht naar project eigenaar).
+
+Herhaling SQL:
+- SELECT (AS ...): Haalt gegevens op uit een database
+- FROM (AS ...): Geeft aan uit welke tabel de gegevens moeten worden gehaald
+- (INNER/LEFT OUTER/RIGHT OUTER) JOIN: Combineert gegevens uit meerdere tabellen
+- WHERE: Filtert gegevens op basis van een voorwaarde
+- GROUP BY: Groepeert gegevens
+- HAVING: Filtert gegevens op basis van een voorwaarde
+- ORDER BY: Sorteert gegevens
+
+- CASE WHEN: Voert een bepaalde actie uit op basis van een voorwaarde (IF-THEN-ELSE ... END)
+
+- COUNT(): Telt het aantal rijen in een resultaatset
+- MAX(): Haalt de grootste waarde op uit een resultaatset
+- MIN(): Haalt de kleinste waarde op uit een resultaatset
+- SUM(): Telt de waarden in een resultaatset op
+- AVG(): Berekent het gemiddelde van de waarden in een resultaatset
+- STDDEV(): Berekent de standaardafwijking van de waarden in een resultaatset
+
+- EXTRACT(): Haalt een deel van een datum op
+- CAST(): Converteert een waarde naar een ander datatype
+- TO_CHAR(): Converteert een waarde naar een string
+- ROUND(): Rondt een getal af
+
+- INSERT INTO: Voegt nieuwe gegevens toe aan een database
+    - Example: INSERT INTO bezoeken (
+            reisnr, volgnr, objectnaam, verblijfsduur) VALUES (34, 4, 'maan', 2)
+- UPDATE: Wijzigt bestaande gegevens in een database
+    - Example: UPDATE reizen
+            SET vertrekdatum =’2030-12-31’, reisduur = 30, prijs = 1.23
+            WHERE reisnr = 33;
+- DELETE FROM: Verwijdert gegevens uit een database
+    - Example: DELETE
+            FROM hemelobjecten
+            WHERE objectnaam = 'Pluto';
+
+
+- CREATE TABLE: Maakt een nieuwe tabel aan
+    - Example: CREATE TABLE bezoeken (
+            reisnr numeric(4,0) NOT NULL, objectnaam character varying(10) NOT NULL, volgnr numeric(2,0) NOT NULL, verblijfsduur numeric(4,0) NOT NULL,
+            CONSTRAINT bezoeken_pkey PRIMARY KEY (reisnr, volgnr),
+            CONSTRAINT bezoeken_objectnaam_fkey
+            FOREIGN KEY (objectnaam)REFERENCES hemelobjecten (objectnaam),
+            CONSTRAINT bezoeken_reisnr_fkey
+            FOREIGN KEY (reisnr)REFERENCES reizen (reisnr)
+    );
+- GRANT: Verleent toegangsrechten aan een gebruiker
+    - Example: GRANT SELECT
+            ON TABLE bezoeken
+            TO student;
+
