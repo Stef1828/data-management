@@ -1,0 +1,16 @@
+Prepared statements
+    - server-side object
+    - Evnetueel parameters
+    - Kan performantie optimaliseren
+    - Duurt zolang als de huidige DB connectie of wanneer DEALLOCATE gebruikt wordt
+    - Syntax: PREPARE name [(data_type [, ...])] AS statement
+    - Flow:
+        1. PREPARE (SELECT, UPDATE, DELETE, INSERT, ...)
+        2. EXECUTE
+            - Voorbeeld:
+                EXECUTE add_customer(100, 'Lieve', 'Standaert', now());
+        3. DEALLOCATE
+            - Voorbeeld:
+                PREPARE add_customer (numeric(4,0), varchar(20), varchar(20), date)
+                AS INSERT INTO klanten VALUES($1, $2, $3, $4);
+                EXECUTE add_customer(100, 'Lieve', 'Standaert', now());

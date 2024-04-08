@@ -1,0 +1,32 @@
+Transacties: Verzameling SQL-instructies die door één gebruiker ingevoerd
+wordt en waarvan de mutaties blijvend moeten zijn of ongedaan
+moeten worden
+- Autocommit: 
+    - Elke SQL-instructie is een transactie 
+    - Elke transactie is permanent
+- Commit: Permanent maken van een transactie
+- Rollback: Ongedaan maken van een transactie
+    - Eenmaal gecommit is er geen rollback meer mogelijk
+- Savepoints:
+    - Maken een deel van een actuele transactie ongedaan
+    - Tussentijdse momentopnames in een transactie
+
+Problemen multi-user gebruik:
+- Dirty read (uncomitted read):
+    - Gebruiker leest gegeven dat nooit gecommit werd
+    - Transactie leest data gecreëerd door gelijktijdige transactie die nog niet gecommit is
+- Nonrepeatable (of nonreproducible) read:
+    - Gebruiker leest voor en na commit andere gegevens (gewijzigde gegevens)
+    - Transactie leest data die eerder gelezen is en vindt dat de data aangepast is door een trasnactie die gecommit is sinds de eerste lees operatie
+- Phantom read: 
+    - Gebruiker lees voor en na commut andere gegevens (nieuwe gegevens)
+    - Transactie herleest data die eerder gelezen is en vindt dat er data bijgekomen of verwijderd is door een andere transactie die gecommit is sinds de eerste lees operatie
+- Lost update:
+    - Wijziging van 1 gebruiker wordt overschreven door andere gebruiker
+    - Enkel veranderingen van laatste commit van gelijktijde transacties die dezelfde rijen updaten zullen behouden worden
+- Serialization anomaly: 
+    - Resultaat van succesvol vastleggen van een groep transacties is inconsistent met mogelijke volgordes van 1 voor 1 uitvoeren van die transacties
+    - Andere volgorde van overlappende transacties zorgt voor een ander resultaat
+
+--> Oplossing is dat transacties serieel verwerkt worden
+--> Oplossing indien honderden tegelijk is transacties parallel verwerken

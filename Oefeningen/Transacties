@@ -1,0 +1,42 @@
+1 GEBRUIKER
+    1. Verbinden via PostgreSQL
+    2. Vastleggen Wijzigingen
+    - START TRANSACTION;
+    - CREATE TABLE oliebol (id SERIAL PRIMARY KEY, kleur VARCHAR(50));
+    - COMMIT;
+    - SELECT * FROM oliebol;
+    3. Ongedaan maken van Wijzigingen
+        - ROLLBACK;
+        - SELECT * FROM oliebol;
+        - START TRANSACTION;
+        - CREATE TABLE bloedwaarde (id SERIAL PRIMARY KEY, cholesterol VARCHAR(50));
+        - ROLLBACK;
+        - SELECT * FROM bloedwaarde;
+    4. Werken met Savepoints
+        - START TRANSACTION;
+        - CREATE TABLE kraam (naam PRIMARY KEY, type VARCHAR(50));
+        - SAVEPOINT buikvol;
+        - CREATE TABLE beoordeling (kraam_naam PRIMARY KEY, waarde NUMERIC(1,10));
+        - SELECT * FROM beoordeling;
+        - ROLLBACK TO SAVEPOINT buikvol;
+        - SELECT * FROM beoordeling;
+        - SELECT * FROM kraam;
+        - COMMIT;
+        - SELECT * FROM kraam;
+
+STANDAARDINSTELLINGEN
+    - SHOW default_transaction_isolation;
+    - SHOW transaction_isolation;
+    - SHOW autocommit;
+
+MEERDERE GEBRUIKERS
+    1. Verbinden met PostgreSQL
+        a. START TRANSACTION;
+            i(Gebruiker1). CREATE TABLE koek (naam PRIMARY KEY);
+            ii(Gebruiker2). SELECT * FROM koek;
+            iii(Gebruiker1). COMMIT;
+            iv(Gebruiker2). SELECT * FROM koek;
+            v. GIVING RIGHTS
+        b. Alle problemen uit de presentatie
+
+
